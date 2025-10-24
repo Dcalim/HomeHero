@@ -2,6 +2,9 @@
 
 Household Management Simplified — a shared dashboard for chores, bills, groceries, reminders and simple automation for families and roommates.
 
+## Resources
+- Miro board: https://miro.com/app/board/uXjVJ0ks-8k=/?share_link_id=499017191447
+
 ## Key ideas
 - Problem: Difficulty coordinating chores, shared expenses and shopping across household members.
 - Solution: Unified app with tasks, bills, shopping lists, smart reminders and automation rules.
