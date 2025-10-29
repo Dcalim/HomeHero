@@ -13,27 +13,24 @@ final class SignUpEmailViewModel: ObservableObject {
     
     @Published var email = ""
     @Published var password = ""
+    @Published var firstname = ""
+    @Published var lastname = ""
+    @Published var phone = ""
     
-    func signUp() {
+    func signUp() async throws{
         guard !email.isEmpty, !password.isEmpty else {
             print("No email or password found.")
             return
         }
         
-        Task {
-            do{
-                let userData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-                print("Signed Up")
-                print(userData)
-            } catch {
-                print("Error: \(error)" )
-            }
-        }
+        try await AuthenticationManager.shared.createUser(email: email, password: password)
+
     }
 }
 
 struct SignUpEmailView: View {
     
+    @Binding var showSignedInView: Bool
     @StateObject private var viewModel = SignUpEmailViewModel()
     
     var body: some View {
@@ -42,18 +39,56 @@ struct SignUpEmailView: View {
             
             Spacer()
             
+            HStack{
+                TextField("First name...", text: $viewModel.firstname)
+                    .padding()
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+                    .autocorrectionDisabled(true)
+                
+                
+                TextField("Last Name...", text: $viewModel.lastname)
+                    .padding()
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+                    .autocorrectionDisabled(true)
+                    
+                    
+            }
+            
+            
             TextField("Email...", text: $viewModel.email)
                 .padding()
                 .background(Color.gray.opacity(0.4))
                 .cornerRadius(10)
+                .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
+                .keyboardType(.emailAddress)
+            
+            TextField("Phone number...", text: $viewModel.phone)
+                .padding()
+                .background(Color.gray.opacity(0.4))
+                .cornerRadius(10)
+                .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
+                .keyboardType(.phonePad)
             
             SecureField("Password...", text: $viewModel.password)
                 .padding()
                 .background(Color.gray.opacity(0.4))
                 .cornerRadius(10)
+                .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
             
             Button(action: {
-                viewModel.signUp()
+                Task{
+                    do{
+                        try await viewModel.signUp()
+                        showSignedInView = false
+                    } catch{
+                        print(error)
+                    }
+                }
             }) {
                 Text("Sign up")
                 .font(.headline)
@@ -77,6 +112,6 @@ struct SignUpEmailView: View {
 
 #Preview {
     NavigationView{
-        SignInEmailView()
+        SignUpEmailView(showSignedInView: .constant(true))
     }
 }

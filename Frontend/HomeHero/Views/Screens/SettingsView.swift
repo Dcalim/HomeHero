@@ -6,13 +6,40 @@
 //
 
 import SwiftUI
+internal import Combine
+
+@MainActor
+final class SettingsViewModel: ObservableObject {
+    
+    func logout() async throws {
+        try await AuthenticationManager.shared.logout()
+    }
+}
 
 struct SettingsView: View {
+    
+    @StateObject private var viewModel = SettingsViewModel()
+    @Binding var showSignedInView: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Button("Log out") {
+                Task {
+                    do {
+                        try await viewModel.logout()
+                        showSignedInView = true
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        }
+        .navigationTitle("Settings")
     }
 }
 
 #Preview {
-    SettingsView()
+    NavigationStack {
+        SettingsView(showSignedInView: .constant(false))
+    }
 }
