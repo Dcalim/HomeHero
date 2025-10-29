@@ -21,29 +21,14 @@ Household Management Simplified — a shared dashboard for chores, bills, grocer
 ## Tech stack
 - iOS app: Swift (SwiftUI + Combine recommended)
 - Backend: Java Spring Boot (REST APIs, business logic, integrations)
-- Realtime storage / auth / notifications: Firebase (Firestore, Auth, Cloud Messaging, Functions)
+- Realtime storage / auth / notifications: Supabase
 - Optional third-party integrations: Grocery APIs, payment providers
 
-## Suggested repo layout
-- /ios/            — Swift project (HomeHero.xcodeproj)
+## Repo layout
+- /frontend/       — Swift project (HomeHero.xcodeproj)
 - /backend/        — Spring Boot service (Gradle/Maven)
-- /firebase/       — Firestore rules, Cloud Functions, deployment scripts
 - /docs/           — design, API spec, user flows
 - /scripts/        — dev / CI helpers
-
-## Getting started (dev)
-1. Firebase
-    - Create Firebase project, enable Auth (Email), Firestore, Cloud Messaging.
-    - Add iOS app and download GoogleService-Info.plist -> place in /ios/HomeHero/Resources.
-    - Add necessary Firestore rules and indexes from /firebase.
-2. Backend (Spring Boot)
-    - Configure application.properties / environment:
-      - FIREBASE_PROJECT_ID, FIREBASE_CREDENTIALS_PATH, DATABASE_URL, JWT_SECRET
-    - Run: ./gradlew bootRun (or `mvn spring-boot:run`)
-3. iOS
-    - Open ios/HomeHero.xcodeproj in Xcode
-    - Install any SPM/CocoaPods dependencies
-    - Build & run on simulator or device
 
 ## Env / config examples
 - backend: application.properties
