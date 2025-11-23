@@ -1,5 +1,7 @@
 package com.project.homeHero.model;
 
+import com.project.homeHero.model.auth.Profile;
+
 public class AppConfig {
     private Profile profile;
 

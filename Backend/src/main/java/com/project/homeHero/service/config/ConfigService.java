@@ -1,15 +1,24 @@
 package com.project.homeHero.service.config;
 
 import com.project.homeHero.model.AppConfig;
-import com.project.homeHero.model.Profile;
+import com.project.homeHero.model.auth.Profile;
+import com.project.homeHero.persistance.ProfileMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ConfigService {
 
-    public AppConfig getConfig() {
-        Profile testProfile = new Profile("id:12345", "Dion Calim", "dcalim@uoguelph.ca", "0987654321");
-        AppConfig testConfig = new AppConfig(testProfile);
-        return testConfig;
+    private final ProfileMapper profileMapper;
+
+    @Autowired
+    public ConfigService(ProfileMapper profileMapper) {
+        this.profileMapper = profileMapper;
+    }
+
+    public List<Profile> getConfig() {
+        return profileMapper.getAllProfiles();
     }
 }
