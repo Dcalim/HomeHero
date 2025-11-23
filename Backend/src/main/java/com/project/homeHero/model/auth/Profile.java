@@ -1,15 +1,19 @@
 package com.project.homeHero.model.auth;
 
+import java.util.UUID;
+
 public class Profile {
-    private String uuid;
+    private UUID id;
+    private String full_name;
     private String first_name;
     private String last_name;
     private String phone_number;
     private String email;
 
     // Constructor
-    public Profile(String uuid, String first_name, String last_name, String phone_number, String email) {
-        this.uuid = uuid;
+    public Profile(UUID id, String full_name, String first_name, String last_name, String phone_number, String email) {
+        this.id = id;
+        this.full_name = full_name;
         this.first_name = first_name;
         this.last_name = last_name;
         this.phone_number = phone_number;
@@ -17,8 +21,12 @@ public class Profile {
     }
 
     // Getters
-    public String getUuid() {
-        return uuid;
+    public UUID getid() {
+        return id;
+    }
+
+    public String getfull_name() {
+        return full_name;
     }
 
     public String getFirst_name() {
@@ -38,8 +46,12 @@ public class Profile {
     }
 
     // Setters
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setfull_name(String full_name) {
+        this.full_name = full_name;
     }
 
     public void setFirst_name(String first_name) {
