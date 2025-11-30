@@ -1,9 +1,9 @@
 package com.project.homeHero.model;
 
-import com.project.homeHero.model.auth.Profile;
-
 public class AppConfig {
     private Profile profile;
+
+    public AppConfig() {}
 
     public AppConfig(Profile profile) {
         this.profile = profile;
@@ -13,7 +13,7 @@ public class AppConfig {
         return profile;
     }
 
-    public void setProfile(Profile id) {
+    public void setProfile(Profile profile) {
         this.profile = profile;
     }
 }

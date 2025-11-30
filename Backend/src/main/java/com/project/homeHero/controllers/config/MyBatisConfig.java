@@ -1,5 +1,6 @@
-package com.project.homeHero.config;
+package com.project.homeHero.controllers.config;
 
+import com.project.homeHero.persistance.util.UUIDTypeHandler;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -14,6 +15,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
 
 import com.project.homeHero.persistance.ProfileMapper;
+
+import java.util.UUID;
 
 @org.springframework.context.annotation.Configuration
 public class MyBatisConfig {
@@ -31,7 +34,6 @@ public class MyBatisConfig {
     @Value("${spring.datasource.driver-class-name}")
     private String dbDriver;
 
-    // ✅ 1. Define the DataSource (DB Connection)
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -42,7 +44,6 @@ public class MyBatisConfig {
         return dataSource;
     }
 
-    // ✅ 2. Build the SqlSessionFactory manually (no XML)
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) {
         TransactionFactory transactionFactory = new JdbcTransactionFactory();
@@ -50,16 +51,16 @@ public class MyBatisConfig {
 
         Configuration configuration = new Configuration(environment);
 
-        // ✅ Register your mappers manually (Java-based)
+        // Register UUID TypeHandler
+        configuration.getTypeHandlerRegistry().register(UUID.class, new UUIDTypeHandler());
+
+        // Register your mappers
         configuration.addMapper(ProfileMapper.class);
-        // Add more mappers here as needed
-        // e.g. configuration.addMapper(UserMapper.class);
 
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
         return builder.build(configuration);
     }
 
-    // ✅ 3. Provide a thread-safe SqlSessionTemplate
     @Bean
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
         return new SqlSessionTemplate(sqlSessionFactory);
