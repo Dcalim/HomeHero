@@ -3,6 +3,8 @@ package com.project.homeHero.model;
 public class AppConfig {
     private Profile profile;
 
+    public AppConfig() {}
+
     public AppConfig(Profile profile) {
         this.profile = profile;
     }
@@ -11,7 +13,7 @@ public class AppConfig {
         return profile;
     }
 
-    public void setProfile(Profile id) {
+    public void setProfile(Profile profile) {
         this.profile = profile;
     }
 }

@@ -22,8 +22,12 @@ final class SignUpEmailViewModel: ObservableObject {
             print("No email or password found.")
             return
         }
-        
-        try await AuthenticationManager.shared.createUser(email: email, password: password)
+        try await AuthenticationManager.shared.createUser(
+            email: email,
+            password: password,
+            firstname: firstname,
+            lastname: lastname,
+            phone: phone)
 
     }
 }
@@ -84,6 +88,7 @@ struct SignUpEmailView: View {
                 Task{
                     do{
                         try await viewModel.signUp()
+                        print("Succcessfully signed up")
                         showSignedInView = false
                     } catch{
                         print(error)
