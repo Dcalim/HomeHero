@@ -13,9 +13,7 @@ struct RootView: View {
     
     var body: some View {
         ZStack{
-            NavigationStack{
-                ContentView(showSignedInView: $showSignedInView)
-            }
+            ContentView(showSignedInView: $showSignedInView)
         }
         .onAppear{
             Task{
@@ -33,8 +31,5 @@ struct RootView: View {
 }
 
 #Preview {
-    NavigationStack
-    {
-        RootView()
-    }
+    RootView()
 }

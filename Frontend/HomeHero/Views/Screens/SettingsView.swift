@@ -20,6 +20,7 @@ struct SettingsView: View {
     
     @StateObject private var viewModel = SettingsViewModel()
     @Binding var showSignedInView: Bool
+    @State private var showResetPassword = false
     
     var body: some View {
         List {
@@ -33,9 +34,24 @@ struct SettingsView: View {
                     }
                 }
             }
+            
+            Button("Change Password") {
+                withAnimation(.spring()) {
+                    showResetPassword = true
+                }
+            }
+            .sheet(isPresented: $showResetPassword){
+                resetPasswordView(showResetPassword: $showResetPassword)
+                    .padding()
+            }
+            
         }
         .navigationTitle("Settings")
+        
+     
     }
+    
+
 }
 
 #Preview {

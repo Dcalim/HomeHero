@@ -1,13 +1,41 @@
 import Foundation
 import Supabase
 
-struct AppUser {
+
+
+struct AppUser: Codable {
     let uid: String
     let email: String?
+    let data: UserData?
+    
+    struct UserData: Codable {
+        let firstName: String
+        let lastName: String
+        let phone: String
+    }
 
     init(session: Session) {
         self.uid = session.user.id.uuidString
         self.email = session.user.email
+        
+        let metadata = session.user.userMetadata
+        
+        // Extract string values from AnyJSON
+        let firstName = metadata["first_name"]?.stringValue
+        let lastName = metadata["last_name"]?.stringValue
+        let phone = metadata["phone"]?.stringValue
+        
+        if let firstName = firstName,
+           let lastName = lastName,
+           let phone = phone {
+            self.data = UserData(
+                firstName: firstName,
+                lastName: lastName,
+                phone: phone
+            )
+        } else {
+            self.data = nil
+        }
     }
 }
 
@@ -24,6 +52,7 @@ final class AuthenticationManager {
     func getAuthenticatedUser() async throws -> AppUser {
         let session = try await supabase.auth.session
         return AppUser(session: session)
+        
     }
     
     @discardableResult
@@ -60,6 +89,19 @@ final class AuthenticationManager {
         let session = try await supabase.auth.signIn(email: email, password: password)
         print("Session: \(session)")
         return AppUser(session: session)
+    }
+    
+    func reAuthenticate() async throws {
+        try await supabase.auth.reauthenticate()
+    }
+    
+//    func resetPasswordForEmail(email: String) async throws {
+//        try await supabase.auth.resetPasswordForEmail(<#T##email: String##String#>)
+//    }
+    
+    func changePassword(newPassword: String, nonce: String) async throws {
+        try await supabase.auth.update(user: UserAttributes(password: newPassword, nonce: nonce))
+        
     }
     
     func logout() async throws {

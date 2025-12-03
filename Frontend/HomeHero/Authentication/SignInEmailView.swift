@@ -7,20 +7,23 @@
 
 import SwiftUI
 internal import Combine
+extension String: @retroactive Error {}
 
 @MainActor
 final class SignInEmailViewModel: ObservableObject {
     
     @Published var email = ""
     @Published var password = ""
+    @Published var errorMessage = ""
     
     func signIn() async throws{
         guard !email.isEmpty, !password.isEmpty else {
-            print("No email or password found.")
-            return
+            throw ErrorString("No email or password found.")
+            
         }
         
         try await AuthenticationManager.shared.signInUser(email: email, password: password)
+       
     }
 }
 
@@ -35,6 +38,13 @@ struct SignInEmailView: View {
             
             Spacer()
             
+            if !viewModel.errorMessage.isEmpty {
+                Text(viewModel.errorMessage)
+                    .font(.caption)
+                    .foregroundColor(.red)
+                    .transition(.opacity)
+            }
+            
             TextField("Email...", text: $viewModel.email)
                 .padding()
                 .background(Color.gray.opacity(0.4))
@@ -48,10 +58,12 @@ struct SignInEmailView: View {
             Button(action: {
                 Task{
                     do{
+                        viewModel.errorMessage = ""
                         try await viewModel.signIn()
                         showSignedInView = false
                     }catch{
-                        print(error)
+                        viewModel.errorMessage = error.localizedDescription
+                        print(error.localizedDescription)
                     }
                 }
             }) {
