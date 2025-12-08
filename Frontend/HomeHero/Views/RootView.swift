@@ -9,27 +9,33 @@ import SwiftUI
 
 struct RootView: View {
     
+    @EnvironmentObject var store: Store
     @State private var showSignedInView: Bool = false
     
     var body: some View {
-        ZStack{
-            ContentView(showSignedInView: $showSignedInView)
+        ZStack {
+            NavigationStack {
+                ContentView(showSignedInView: $showSignedInView)
+                    .environmentObject(store) // inject store here
+            }
         }
-        .onAppear{
-            Task{
+        .onAppear {
+            Task {
                 let authUser = try? await AuthenticationManager.shared.getAuthenticatedUser()
                 self.showSignedInView = authUser == nil
             }
         }
-        .fullScreenCover(isPresented: $showSignedInView){
-            NavigationStack{
+        .fullScreenCover(isPresented: $showSignedInView) {
+            NavigationStack {
                 AuthView(showSignedInView: $showSignedInView)
             }
         }
-        
     }
 }
 
 #Preview {
-    RootView()
+    NavigationStack {
+        RootView()
+            .environmentObject(Store(appState: AppState(), reducer: Reducer()))
+    }
 }

@@ -5,20 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb16930e-f3fc-4faf-b8e5-e593ab08804d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/persistance/util/UUIDTypeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/service/util/JwtVerifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/HomeHero/Service/ApiService.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/HomeHero/Service/Auth.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/HomeHero/Store/store.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/controllers/config/MyBatisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/controllers/config/MyBatisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/controllers/configController/ConfigController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/controllers/configController/ConfigController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/model/auth/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/model/auth/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/model/auth/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/persistance/ProfileMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/persistance/ProfileMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/service/config/ConfigService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/service/profile/ProfileService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/HomeHero.xcodeproj/project.xcworkspace/xcuserdata/dioncalim.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero.xcodeproj/project.xcworkspace/xcuserdata/dioncalim.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Authentication/AuthenticationManager.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Authentication/AuthenticationManager.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Authentication/SignUpEmailView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Authentication/SignUpEmailView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/HomeHeroApp.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/HomeHeroApp.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Views/RootView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Views/RootView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Views/Screens/HomeView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Views/Screens/HomeView.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,40 +54,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.HomeHeroApplication.executor&quot;: &quot;Debug&quot;,
-    &quot;Maven.homeHero [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.homeHero [install].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.HomeHeroApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.homeHeroApplication.executor&quot;: &quot;Run&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;h2-init&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/dioncalim/Downloads/homeHero&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HomeHeroApplication.executor": "Run",
+    "Maven.homeHero [clean].executor": "Run",
+    "Maven.homeHero [install].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.HomeHeroApplication.executor": "Run",
+    "Spring Boot.homeHeroApplication.executor": "Run",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "h2-init",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/dioncalim/Downloads/homeHero",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -177,33 +173,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/controllers/configController/ConfigController.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/controllers/configController/ConfigController.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/controllers/configController/ConfigController.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/controllers/configController/ConfigController.java</url>
           <line>41</line>
           <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/service/util/JwtVerifier.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Backend/src/main/java/com/project/homeHero/service/util/JwtVerifier.java</url>
-          <line>28</line>
-          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

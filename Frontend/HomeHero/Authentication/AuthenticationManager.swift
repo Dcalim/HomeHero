@@ -80,6 +80,7 @@ final class AuthenticationManager {
             throw NSError()
         }
         
+        setToken(token: session.accessToken)
         return AppUser(session: session)
     }
 
@@ -87,7 +88,7 @@ final class AuthenticationManager {
     @discardableResult
     func signInUser(email: String, password: String) async throws -> AppUser {
         let session = try await supabase.auth.signIn(email: email, password: password)
-        print("Session: \(session)")
+        setToken(token: session.accessToken)
         return AppUser(session: session)
     }
     

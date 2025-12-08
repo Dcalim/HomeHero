@@ -11,9 +11,12 @@ import SwiftData
 @main
 struct HomeHeroApp: App {
     
+    @StateObject private var store = Store(appState: AppState(), reducer: Reducer())
+    
     var body: some Scene {
         WindowGroup {
             RootView()
+                            .environmentObject(store) // inject store for entire app
         }
     }
 }
