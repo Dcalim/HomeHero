@@ -6,10 +6,64 @@
 //
 
 import SwiftUI
+import ComponentsKit
 
 struct TasksView: View {
+    
+    enum Tab {
+        case todo, shopping
+    }
+    
+    @State private var selectedTab: Tab = .todo
+    
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            HStack{
+                VStack(alignment: .leading){
+                    Text("Welcome,")
+                        .font(Font.title2.bold())
+                    Text("User")
+                        .font(Font.largeTitle.bold())
+                    Text("Stay on top of your home tasks.")
+                }
+                Spacer()
+            }
+            .padding(10)
+            
+            SUCard(model: cardModel){
+                VStack{
+                    HStack {
+                        VStack{
+                            Button("To-do List") {
+                                selectedTab = .todo
+                            }
+                            .foregroundColor(selectedTab == .todo ? .primary : .secondary)
+                            TabIndicator(isActive: selectedTab == .todo)
+                        }
+                        
+                        VStack{
+                            Button("Shopping List") {
+                                selectedTab = .shopping
+                            }
+                            .foregroundColor(selectedTab == .shopping ? .primary : .secondary)
+                            TabIndicator(isActive: selectedTab == .shopping)
+                        }
+                        
+                    }
+                    .buttonStyle(.plain)
+                    .animation(.easeInOut(duration: 0.25), value: selectedTab)
+                    
+                    ScrollView(.vertical, showsIndicators: false){
+                        
+                    }
+                }
+                
+            }
+            
+            Spacer()
+        }
+        .padding(10)
     }
 }
 

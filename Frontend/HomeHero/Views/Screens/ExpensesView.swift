@@ -9,7 +9,23 @@ import SwiftUI
 
 struct ExpensesView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            HStack{
+                VStack(alignment: .leading){
+                    Text("Welcome,")
+                        .font(Font.title2.bold())
+                    Text("User")
+                        .font(Font.largeTitle.bold())
+                    Text("Track and split your home expenses.")
+                }
+                Spacer()
+            }
+            .padding(10)
+            
+            
+            Spacer()
+        }
+        .padding(10)
     }
 }
 
