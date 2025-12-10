@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct ExpensesView: View {
+    @EnvironmentObject var store: Store
+    
+    var profile: Profile {
+        store.selectProfile()
+    }
+    
     var body: some View {
         VStack{
             HStack{
                 VStack(alignment: .leading){
                     Text("Welcome,")
                         .font(Font.title2.bold())
-                    Text("User")
+                    Text("\(profile.firstName)")
                         .font(Font.largeTitle.bold())
                     Text("Track and split your home expenses.")
                 }

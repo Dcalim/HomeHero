@@ -1,5 +1,6 @@
 import Foundation
 import Supabase
+internal import Combine
 
 
 
@@ -39,10 +40,12 @@ struct AppUser: Codable {
     }
 }
 
-final class AuthenticationManager {
+class AuthenticationManager: ObservableObject {
     
     static let shared = AuthenticationManager()
     private init () {}
+    
+    @Published var authToken: String? = nil
     
     let supabase = SupabaseClient(
         supabaseURL: URL(string: "https://ycagpnrdvljcjretnwyp.supabase.co")!,
@@ -80,6 +83,11 @@ final class AuthenticationManager {
             throw NSError()
         }
         
+        // Set Auth Token
+        await MainActor.run {
+            self.authToken = session.accessToken
+        }
+
         return AppUser(session: session)
     }
 
@@ -87,7 +95,12 @@ final class AuthenticationManager {
     @discardableResult
     func signInUser(email: String, password: String) async throws -> AppUser {
         let session = try await supabase.auth.signIn(email: email, password: password)
-        print("Session: \(session)")
+        
+        // Set Auth Token
+        await MainActor.run {
+            self.authToken = session.accessToken
+        }
+        print("\(self.authToken)")
         return AppUser(session: session)
     }
     

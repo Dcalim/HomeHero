@@ -47,13 +47,16 @@ let mockUsers: [Roomate] = [
     ]
 
 struct HomeView: View {
-
-//    let user: AppUser?
-//    let homeName: String?
+    
+    @EnvironmentObject var store: Store
     
     @State private var hasHome: Bool = true
     @State private var isExpanded = false
     @State private var selectedDetent: PresentationDetent = .height(200)
+    
+    var profile: Profile {
+        store.selectProfile()
+    }
     
     enum Tab {
         case users, alerts, todo
@@ -71,7 +74,7 @@ struct HomeView: View {
                     VStack(alignment: .leading){
                         Text("Welcome,")
                             .font(Font.title2.bold())
-                        Text("User")
+                        Text("\(profile.firstName)")
                             .font(Font.largeTitle.bold())
                         Text("Here whats happening at home today.")
                     }
@@ -234,7 +237,7 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.top, 8)
                     .padding(.bottom, 8)
-                    
+                
                 
                 Button(action: {
                     
@@ -274,7 +277,7 @@ struct HomeView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
                 .padding()
-
+                
                 
                 Spacer()
             }
@@ -289,7 +292,7 @@ struct HomeView: View {
                 )
                 .fill(Color.white)
                 .shadow(color: .black.opacity(0.01), radius: 1, x: -3, y: -12)  // Left shadow
-                .shadow(color: .black.opacity(0.05), radius: 1, x: 1, y: -1)   // Right shadow
+                    .shadow(color: .black.opacity(0.05), radius: 1, x: 1, y: -1)   // Right shadow
             )
             .padding(.horizontal, 10)
             .onTapGesture {
