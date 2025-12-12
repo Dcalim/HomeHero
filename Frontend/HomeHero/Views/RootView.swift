@@ -9,11 +9,13 @@ import SwiftUI
 
 struct RootView: View {
     
+    @EnvironmentObject var store: Store
     @State private var showSignedInView: Bool = false
     
     var body: some View {
         ZStack{
             ContentView(showSignedInView: $showSignedInView)
+                .environmentObject(store) // inject store here
         }
         .onAppear{
             Task{

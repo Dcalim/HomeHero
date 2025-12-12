@@ -31,6 +31,7 @@ enum AppTab: Hashable {
 }
 
 struct ContentView: View {
+    @EnvironmentObject var store: Store
     @State private var selected: AppTab = .home
     @Binding var showSignedInView: Bool
     
@@ -38,6 +39,7 @@ struct ContentView: View {
         TabView(selection: $selected) {
             NavigationStack {
                 HomeView()
+                    .environmentObject(store)
             }
             .tabItem {
                 Label(AppTab.home.title, systemImage: AppTab.home.systemImage)
@@ -46,6 +48,7 @@ struct ContentView: View {
             
             NavigationStack {
                 TasksView()
+                    .environmentObject(store)
             }
             .tabItem {
                 Label(AppTab.tasks.title, systemImage: AppTab.tasks.systemImage)
@@ -55,6 +58,7 @@ struct ContentView: View {
     
             NavigationStack {
                 ExpensesView()
+                    .environmentObject(store)
             }
             .tabItem {
                 Label(AppTab.expenses.title, systemImage: AppTab.expenses.systemImage)
@@ -63,6 +67,7 @@ struct ContentView: View {
             
             NavigationStack {
                 SettingsView(showSignedInView: $showSignedInView)
+                    .environmentObject(store)
             }
             .tabItem {
                 Label(AppTab.settings.title, systemImage: AppTab.settings.systemImage)
