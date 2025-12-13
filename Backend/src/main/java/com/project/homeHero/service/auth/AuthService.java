@@ -20,7 +20,6 @@ public class AuthService {
     }
 
     public String getUserIdFromToken(String token) {
-        token = token.replace("Bearer ", "");
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(secret)
                 .build()
