@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ComponentsKit
+import ComposableArchitecture
 
 let cardModel = CardVM {
     $0.borderWidth = .none
@@ -48,15 +49,15 @@ let mockUsers: [Roomate] = [
 
 struct HomeView: View {
     
-    @EnvironmentObject var store: Store
-    
+    let store: StoreOf<AppFeature>
+
     @State private var hasHome: Bool = true
     @State private var isExpanded = false
     @State private var selectedDetent: PresentationDetent = .height(200)
-    
-    var profile: Profile {
-        store.selectProfile()
-    }
+//    
+//    var profile: Profile {
+//        store.selectProfile()
+//    }
     
     enum Tab {
         case users, alerts, todo
@@ -74,7 +75,7 @@ struct HomeView: View {
                     VStack(alignment: .leading){
                         Text("Welcome,")
                             .font(Font.title2.bold())
-                        Text("\(profile.firstName)")
+                        Text("\(store.config.data.profile.firstName)")
                             .font(Font.largeTitle.bold())
                         Text("Here whats happening at home today.")
                     }
@@ -307,6 +308,6 @@ struct HomeView: View {
 
 #Preview {
     NavigationStack{
-        HomeView()
+        HomeView(store: HomeHeroApp.store)
     }
 }

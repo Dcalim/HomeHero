@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import ComposableArchitecture
 
 enum AppTab: Hashable {
     case home, tasks, expenses, settings
@@ -31,15 +32,16 @@ enum AppTab: Hashable {
 }
 
 struct ContentView: View {
-    @EnvironmentObject var store: Store
+    let store: StoreOf<AppFeature>
+    
     @State private var selected: AppTab = .home
     @Binding var showSignedInView: Bool
     
     var body: some View {
         TabView(selection: $selected) {
             NavigationStack {
-                HomeView()
-                    .environmentObject(store)
+                HomeView(store: store)
+//                    .environmentObject(store)
             }
             .tabItem {
                 Label(AppTab.home.title, systemImage: AppTab.home.systemImage)
@@ -48,7 +50,7 @@ struct ContentView: View {
             
             NavigationStack {
                 TasksView()
-                    .environmentObject(store)
+//                    .environmentObject(store)
             }
             .tabItem {
                 Label(AppTab.tasks.title, systemImage: AppTab.tasks.systemImage)
@@ -57,8 +59,8 @@ struct ContentView: View {
             
     
             NavigationStack {
-                ExpensesView()
-                    .environmentObject(store)
+//                ExpensesView()
+//                    .environmentObject(store)
             }
             .tabItem {
                 Label(AppTab.expenses.title, systemImage: AppTab.expenses.systemImage)
@@ -67,7 +69,7 @@ struct ContentView: View {
             
             NavigationStack {
                 SettingsView(showSignedInView: $showSignedInView)
-                    .environmentObject(store)
+//                    .environmentObject(store)
             }
             .tabItem {
                 Label(AppTab.settings.title, systemImage: AppTab.settings.systemImage)
@@ -91,5 +93,5 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView(showSignedInView: .constant(true))
+    ContentView(store: HomeHeroApp.store, showSignedInView: .constant(true))
 }

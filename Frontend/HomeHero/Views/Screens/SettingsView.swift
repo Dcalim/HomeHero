@@ -18,11 +18,11 @@ final class SettingsViewModel: ObservableObject {
 }
 
 struct SettingsView: View {
-    @EnvironmentObject var store: Store
-    
-    var profile: Profile {
-        store.selectProfile()
-    }
+//    @EnvironmentObject var store: Store
+//    
+//    var profile: Profile {
+//        store.selectProfile()
+//    }
     
     @StateObject private var viewModel = SettingsViewModel()
     @Binding var showSignedInView: Bool
@@ -71,7 +71,7 @@ struct SettingsView: View {
                             
                             VStack (alignment: .leading){
                                 Text("Full name")
-                                Text("\(profile.fullName)")
+//                                Text("\(profile.fullName)")
                                 
                                 Text("DISPLAY NAME")
                                     .font(.caption)

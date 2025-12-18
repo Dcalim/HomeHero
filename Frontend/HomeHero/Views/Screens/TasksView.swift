@@ -9,12 +9,12 @@ import SwiftUI
 import ComponentsKit
 
 struct TasksView: View {
-    @EnvironmentObject var store: Store
-    
-    var profile: Profile {
-        store.selectProfile()
-    }
-    
+//    @EnvironmentObject var store: Store
+//    
+//    var profile: Profile {
+//        store.selectProfile()
+//    }
+//    
     
     enum Tab {
         case todo, shopping
@@ -29,7 +29,7 @@ struct TasksView: View {
                 VStack(alignment: .leading){
                     Text("Welcome,")
                         .font(Font.title2.bold())
-                    Text("\(profile.firstName)")
+//                    Text("\(profile.firstName)")
                         .font(Font.largeTitle.bold())
                     Text("Stay on top of your home tasks.")
                 }

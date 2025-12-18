@@ -7,21 +7,22 @@
 
 import SwiftUI
 import SwiftData
+import ComposableArchitecture
 
 @main
 struct HomeHeroApp: App {
     
-    @StateObject private var store = Store(appState: AppState(), reducer: Reducer())
+    static let store = Store(initialState: AppFeature.State()) {
+      AppFeature()
+    }
     @State private var authManager = AuthenticationManager.shared
     
     var body: some Scene {
         WindowGroup {
-            RootView()
-                            .environmentObject(store) // inject store for entire app
-                            .task { store.loadConfig() }      // run on launch
-                            .onReceive(authManager.$authToken) { _ in
-                                Task { store.loadConfig() }     // whenever token changes
-                            }
+            RootView(store: HomeHeroApp.store)
+                .onReceive(authManager.$authToken) { _ in
+                    HomeHeroApp.store.send(.config(.loadConfig))
+                }
             
         }
     }

@@ -100,7 +100,6 @@ class AuthenticationManager: ObservableObject {
         await MainActor.run {
             self.authToken = session.accessToken
         }
-        print("\(self.authToken)")
         return AppUser(session: session)
     }
     

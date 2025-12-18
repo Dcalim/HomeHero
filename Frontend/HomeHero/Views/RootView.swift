@@ -6,16 +6,16 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct RootView: View {
     
-    @EnvironmentObject var store: Store
+    let store: StoreOf<AppFeature>
     @State private var showSignedInView: Bool = false
     
     var body: some View {
         ZStack{
-            ContentView(showSignedInView: $showSignedInView)
-                .environmentObject(store) // inject store here
+            ContentView(store: store, showSignedInView: $showSignedInView)
         }
         .onAppear{
             Task{
@@ -33,5 +33,5 @@ struct RootView: View {
 }
 
 #Preview {
-    RootView()
+    RootView(store: HomeHeroApp.store)
 }

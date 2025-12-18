@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12360DA52EEF96350095AEF4 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 12360DA42EEF96350095AEF4 /* ComposableArchitecture */; };
 		A9373C522EB17D6D005CC224 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = A9373C512EB17D6D005CC224 /* Auth */; };
 		A9373C542EB17D6D005CC224 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = A9373C532EB17D6D005CC224 /* Functions */; };
 		A9373C562EB17D6D005CC224 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = A9373C552EB17D6D005CC224 /* PostgREST */; };
@@ -39,6 +40,7 @@
 				A9373C582EB17D6D005CC224 /* Realtime in Frameworks */,
 				A9373C562EB17D6D005CC224 /* PostgREST in Frameworks */,
 				A9373C522EB17D6D005CC224 /* Auth in Frameworks */,
+				12360DA52EEF96350095AEF4 /* ComposableArchitecture in Frameworks */,
 				A9373C5C2EB17D6D005CC224 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,6 +91,7 @@
 				A9373C572EB17D6D005CC224 /* Realtime */,
 				A9373C592EB17D6D005CC224 /* Storage */,
 				A9373C5B2EB17D6D005CC224 /* Supabase */,
+				12360DA42EEF96350095AEF4 /* ComposableArchitecture */,
 			);
 			productName = HomeHero;
 			productReference = A9B27E342EAC371A00194157 /* HomeHero.app */;
@@ -121,6 +124,7 @@
 			packageReferences = (
 				A9B065392EAD507E0051517E /* XCRemoteSwiftPackageReference "ComponentsKit" */,
 				A9373C502EB17D6D005CC224 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				12360DA32EEF96350095AEF4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A9B27E352EAC371A00194157 /* Products */;
@@ -364,6 +368,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		12360DA32EEF96350095AEF4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.23.1;
+			};
+		};
 		A9373C502EB17D6D005CC224 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase/supabase-swift";
@@ -383,6 +395,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		12360DA42EEF96350095AEF4 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12360DA32EEF96350095AEF4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		A9373C512EB17D6D005CC224 /* Auth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A9373C502EB17D6D005CC224 /* XCRemoteSwiftPackageReference "supabase-swift" */;

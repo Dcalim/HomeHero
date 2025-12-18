@@ -9,21 +9,6 @@ import Foundation
 
 // MARK: - State
 
-struct ConfigState {
-    var data: ConfigResponse = ConfigResponse(
-        profile: Profile(
-            id: "",
-            email: "",
-            fullName: "",
-            firstName: "",
-            lastName: "",
-            phoneNumber: ""
-        )
-    )
-    var isLoading = false
-    var error: String?
-}
-
 // MARK: - Actions
 enum ConfigAction {
     case loadConfig

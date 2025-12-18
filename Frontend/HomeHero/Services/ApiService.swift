@@ -7,13 +7,6 @@
 
 import Foundation
 
-enum HTTPMethod: String {
-    case GET
-    case POST
-    case PUT
-    case DELETE
-    case PATCH
-}
 
 class ApiService {
     static let shared = ApiService()
