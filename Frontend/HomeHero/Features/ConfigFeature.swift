@@ -10,6 +10,9 @@ import Foundation
 
 @Reducer
 struct ConfigFeature {
+    
+    @Dependency(\.configClient) var configClient
+    
     @ObservableState
     struct State {
         var data: ConfigResponse = ConfigResponse(
@@ -41,7 +44,7 @@ struct ConfigFeature {
 
                 return .run { send in
                     do {
-                        let response = try await ApiService.Config.fetchConfig()
+                        let response = try await configClient.fetchConfig()
                         await send(.loadConfigResponse(.success(response)))
                     } catch {
                         await send(.loadConfigResponse(.failure(error)))

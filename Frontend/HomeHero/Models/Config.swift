@@ -29,3 +29,16 @@ struct Profile: Codable {
     let lastName: String
     let phoneNumber: String
 }
+
+extension ConfigResponse {
+    static let mock = ConfigResponse(
+        profile: Profile(
+            id: "1",
+            email: "preview@test.com",
+            fullName: "Preview User",
+            firstName: "Preview",
+            lastName: "User",
+            phoneNumber: "1234567890"
+        )
+    )
+}

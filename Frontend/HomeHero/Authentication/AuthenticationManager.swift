@@ -45,7 +45,7 @@ class AuthenticationManager: ObservableObject {
     static let shared = AuthenticationManager()
     private init () {}
     
-    @Published var authToken: String? = nil
+    @Published var authToken: String = ""
     
     let supabase = SupabaseClient(
         supabaseURL: URL(string: "https://ycagpnrdvljcjretnwyp.supabase.co")!,
