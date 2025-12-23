@@ -7,14 +7,10 @@
 
 import SwiftUI
 import ComponentsKit
+import ComposableArchitecture
 
 struct TasksView: View {
-//    @EnvironmentObject var store: Store
-//    
-//    var profile: Profile {
-//        store.selectProfile()
-//    }
-//    
+    let store: StoreOf<AppFeature>
     
     enum Tab {
         case todo, shopping
@@ -29,7 +25,7 @@ struct TasksView: View {
                 VStack(alignment: .leading){
                     Text("Welcome,")
                         .font(Font.title2.bold())
-//                    Text("\(profile.firstName)")
+                    Text("\(store.config.data.profile.firstName)")
                         .font(Font.largeTitle.bold())
                     Text("Stay on top of your home tasks.")
                 }
@@ -74,5 +70,5 @@ struct TasksView: View {
 }
 
 #Preview {
-    TasksView()
+    TasksView(store: HomeHeroApp.store)
 }

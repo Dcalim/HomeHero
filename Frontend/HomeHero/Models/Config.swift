@@ -7,21 +7,12 @@
 
 import Foundation
 
-// MARK: - State
-
-// MARK: - Actions
-enum ConfigAction {
-    case loadConfig
-    case loadConfigSuccess(ConfigResponse)
-    case loadConfigFailure(String)
-}
-
 // MARK: - Models (API response)
-struct ConfigResponse: Codable {
+struct ConfigResponse: Codable, Equatable {
     let profile: Profile
 }
 
-struct Profile: Codable {
+struct Profile: Codable, Equatable {
     let id: String
     let email: String
     let fullName: String

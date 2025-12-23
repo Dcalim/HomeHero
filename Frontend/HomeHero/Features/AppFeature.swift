@@ -11,18 +11,24 @@ import ComposableArchitecture
 struct AppFeature {
     
     @ObservableState
-    struct State {
+    struct State: Equatable {
         var config = ConfigFeature.State()
+        var ui = UIFeature.State()
     }
     
     enum Action {
         case config(ConfigFeature.Action)
+        case ui(UIFeature.Action)
     }
     
     var body: some Reducer<State, Action>{
         // Allows us to use the reducer functions in the Config Feature (Child)
         Scope(state: \.config, action: \.config) {
             ConfigFeature()
+        }
+        
+        Scope(state: \.ui, action: \.ui) {
+            UIFeature()
         }
         
         Reduce { state, action in

@@ -14,7 +14,7 @@ struct ConfigFeature {
     @Dependency(\.configClient) var configClient
     
     @ObservableState
-    struct State {
+    struct State: Equatable {
         var data: ConfigResponse = ConfigResponse(
             profile: Profile(
                 id: "",

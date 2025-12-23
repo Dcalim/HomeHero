@@ -8,6 +8,7 @@
 import SwiftUI
 import ComponentsKit
 internal import Combine
+import ComposableArchitecture
 
 @MainActor
 final class SettingsViewModel: ObservableObject {
@@ -18,11 +19,7 @@ final class SettingsViewModel: ObservableObject {
 }
 
 struct SettingsView: View {
-//    @EnvironmentObject var store: Store
-//    
-//    var profile: Profile {
-//        store.selectProfile()
-//    }
+    let store: StoreOf<AppFeature>
     
     @StateObject private var viewModel = SettingsViewModel()
     @Binding var showSignedInView: Bool
@@ -71,7 +68,7 @@ struct SettingsView: View {
                             
                             VStack (alignment: .leading){
                                 Text("Full name")
-//                                Text("\(profile.fullName)")
+                                Text("\(store.config.data.profile.firstName)")
                                 
                                 Text("DISPLAY NAME")
                                     .font(.caption)
@@ -284,6 +281,6 @@ struct SettingsView: View {
 
 #Preview {
     NavigationStack {
-        SettingsView(showSignedInView: .constant(false))
+        SettingsView(store: HomeHeroApp.store, showSignedInView: .constant(false))
     }
 }

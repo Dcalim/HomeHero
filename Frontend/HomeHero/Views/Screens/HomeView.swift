@@ -54,10 +54,6 @@ struct HomeView: View {
     @State private var hasHome: Bool = true
     @State private var isExpanded = false
     @State private var selectedDetent: PresentationDetent = .height(200)
-//    
-//    var profile: Profile {
-//        store.selectProfile()
-//    }
     
     enum Tab {
         case users, alerts, todo
