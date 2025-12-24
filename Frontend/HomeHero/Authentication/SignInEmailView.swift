@@ -6,95 +6,68 @@
 //
 
 import SwiftUI
-internal import Combine
-extension String: @retroactive Error {}
-
-@MainActor
-final class SignInEmailViewModel: ObservableObject {
-    
-    @Published var email = ""
-    @Published var password = ""
-    @Published var errorMessage = ""
-    
-    func signIn() async throws{
-        guard !email.isEmpty, !password.isEmpty else {
-            throw ErrorString("No email or password found.")
-            
-        }
-        
-        try await AuthenticationManager.shared.signInUser(email: email, password: password)
-       
-    }
-}
+import ComposableArchitecture
 
 struct SignInEmailView: View {
-    
-    @Binding var showSignedInView: Bool
-    @StateObject private var viewModel = SignInEmailViewModel()
-    
+    let store: StoreOf<AppFeature>
+
+    @State private var email = ""
+    @State private var password = ""
+
     var body: some View {
-        VStack{
-                
-            
-            Spacer()
-            
-            if !viewModel.errorMessage.isEmpty {
-                Text(viewModel.errorMessage)
-                    .font(.caption)
-                    .foregroundColor(.red)
-                    .transition(.opacity)
-            }
-            
-            TextField("Email...", text: $viewModel.email)
-                .padding()
-                .background(Color.gray.opacity(0.4))
-                .cornerRadius(10)
-            
-            SecureField("Password...", text: $viewModel.password)
-                .padding()
-                .background(Color.gray.opacity(0.4))
-                .cornerRadius(10)
-            
-            Button(action: {
-                Task{
-                    do{
-                        viewModel.errorMessage = ""
-                        try await viewModel.signIn()
-                        showSignedInView = false
-                    }catch{
-                        viewModel.errorMessage = error.localizedDescription
-                        print(error.localizedDescription)
-                    }
+        WithViewStore(store, observe: \.auth) { viewStore in
+            VStack {
+                Spacer()
+
+                if let errorMessage = viewStore.errorMessage {
+                    Text(errorMessage)
+                        .font(.caption)
+                        .foregroundColor(.red)
                 }
-            }) {
-                Text("Sign In")
-                .font(.headline)
-                .foregroundColor(.black)
-                .frame(height: 55)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray, lineWidth: 2)
-                )
-                .cornerRadius(10)
+
+                TextField("Email...", text: $email)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .padding()
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+
+                SecureField("Password...", text: $password)
+                    .padding()
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+
+                Button {
+                    viewStore.send(.auth(.signInButtonTapped(
+                        email: email,
+                        password: password
+                    ))
+                    )
+                } label: {
+                    Text("Sign In")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.gray, lineWidth: 2)
+                        )
+                        .cornerRadius(10)
+                }
+                
+                NavigationLink {
+                    SignUpEmailView(store: store)
+                } label: {
+                    Text("Don't have an account? Sign Up!")
+                }
+
+                Spacer()
             }
-            
-            NavigationLink{
-                SignUpEmailView(showSignedInView: $showSignedInView)
-            }label:{
-                Text("Don't have an account? Sign Up!")
-            }
-            Spacer()
+            .padding()
+            .navigationTitle("Sign In")
         }
-        .padding()
-        .navigationTitle("Sign In")
-       
     }
 }
 
-#Preview {
-    NavigationView{
-        SignInEmailView(showSignedInView: .constant(true))
-    }
-}

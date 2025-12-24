@@ -22,7 +22,6 @@ struct SettingsView: View {
     let store: StoreOf<AppFeature>
     
     @StateObject private var viewModel = SettingsViewModel()
-    @Binding var showSignedInView: Bool
     @State private var showResetPassword = false
     @State private var displayName = ""
     
@@ -242,7 +241,7 @@ struct SettingsView: View {
                             Task {
                                 do {
                                     try await viewModel.logout()
-                                    showSignedInView = true
+                                    store.send(.auth(.signOut))
                                 } catch {
                                     print(error)
                                 }
@@ -281,6 +280,6 @@ struct SettingsView: View {
 
 #Preview {
     NavigationStack {
-        SettingsView(store: HomeHeroApp.store, showSignedInView: .constant(false))
+        SettingsView(store: HomeHeroApp.store)
     }
 }

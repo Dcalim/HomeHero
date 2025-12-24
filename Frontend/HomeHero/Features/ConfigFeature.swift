@@ -54,7 +54,7 @@ struct ConfigFeature {
             case .loadConfigResponse(.success(let response)):
                 state.isLoading = false
                 state.data = response
-
+                print("\(state.data)")
                 return .none
 
             case .loadConfigResponse(.failure(let error)):

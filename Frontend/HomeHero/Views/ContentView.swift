@@ -11,7 +11,6 @@ import ComposableArchitecture
 
 struct ContentView: View {
     let store: StoreOf<AppFeature>
-    @Binding var showSignedInView: Bool
 
     var body: some View {
         WithViewStore(store, observe: \.ui) { viewStore in
@@ -50,7 +49,7 @@ struct ContentView: View {
                 
                 // SETTINGS
                 NavigationStack {
-                    SettingsView(store: store, showSignedInView: $showSignedInView)
+                    SettingsView(store: store)
                 }
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
@@ -82,7 +81,6 @@ struct ContentView: View {
         store: Store(
             initialState: AppFeature.State(),
             reducer: { AppFeature() }
-        ),
-        showSignedInView: .constant(true)
+        )
     )
 }

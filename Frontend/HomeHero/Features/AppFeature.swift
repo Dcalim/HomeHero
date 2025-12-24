@@ -14,11 +14,13 @@ struct AppFeature {
     struct State: Equatable {
         var config = ConfigFeature.State()
         var ui = UIFeature.State()
+        var auth = AuthFeature.State()
     }
     
     enum Action {
         case config(ConfigFeature.Action)
         case ui(UIFeature.Action)
+        case auth(AuthFeature.Action)
     }
     
     var body: some Reducer<State, Action>{
@@ -31,9 +33,25 @@ struct AppFeature {
             UIFeature()
         }
         
+        Scope(state: \.auth, action: \.auth) {
+            AuthFeature()
+        }
+        
         Reduce { state, action in
-          // Core logic of the app feature
-          return .none
+            switch action {
+
+            case .auth(.signInResponse(.success)):
+                // Auth just succeeded → load config
+                return .send(.config(.loadConfig))
+
+            case .auth(.signOut):
+                // Optional: reset config on logout
+                state.config = ConfigFeature.State()
+                return .none
+
+            default:
+                return .none
+            }
         }
     }
 }

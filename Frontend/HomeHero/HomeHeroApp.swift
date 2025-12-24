@@ -20,10 +20,6 @@ struct HomeHeroApp: App {
     var body: some Scene {
         WindowGroup {
             RootView(store: HomeHeroApp.store)
-                .onReceive(authManager.$authToken) { _ in
-                    HomeHeroApp.store.send(.config(.loadConfig))
-                }
-            
         }
     }
 }

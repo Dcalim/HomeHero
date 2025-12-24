@@ -5,15 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb16930e-f3fc-4faf-b8e5-e593ab08804d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Frontend/HomeHero/Features/UIFeature.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/HomeHero/Features/AuthFeature.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/HomeHero.xcodeproj/project.xcworkspace/xcuserdata/dioncalim.xcuserdatad/UserInterfaceState.xcuserstate" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero.xcodeproj/project.xcworkspace/xcuserdata/dioncalim.xcuserdatad/UserInterfaceState.xcuserstate" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Features/AppFeature.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Features/AppFeature.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Features/ConfigFeature.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Features/ConfigFeature.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Models/Config.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Models/Config.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Services/ApiService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Services/ApiService.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Services/ApiService.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Services/ConfigClient.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Services/MoyaProvider.swift" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Views/ContentView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Views/ContentView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Views/Screens/ExpensesView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Views/Screens/ExpensesView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/HomeHero/Views/Screens/SettingsView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/HomeHero/Views/Screens/SettingsView.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
