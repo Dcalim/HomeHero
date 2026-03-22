@@ -8,19 +8,15 @@
 import SwiftUI
 import ComposableArchitecture
 
-import SwiftUI
-import ComposableArchitecture
-
 struct RootView: View {
     let store: StoreOf<AppFeature>
 
     var body: some View {
-        WithViewStore(store, observe: \.auth.isSignedIn) { viewStore in
             ZStack {
                 ContentView(store: store)
             }
             .fullScreenCover(
-                isPresented: .constant(!viewStore.state)
+                isPresented: .constant(!store.auth.isSignedIn)
             ) {
                 NavigationStack {
                     AuthView(store: store)
@@ -29,7 +25,6 @@ struct RootView: View {
 //            .onAppear {
 //                store.send(.auth(.checkAuthentication))
 //            }
-        }
     }
 }
 

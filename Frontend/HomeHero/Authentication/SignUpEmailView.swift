@@ -43,64 +43,62 @@ struct SignUpEmailView: View {
     @State private var phone = ""
 
     var body: some View {
-        WithViewStore(store, observe: \.auth) { viewStore in
-            VStack {
-                Spacer()
+        VStack {
+            Spacer()
 
-                if let error = viewStore.errorMessage {
-                    Text(error)
-                        .font(.caption)
-                        .foregroundColor(.red)
-                }
+            if let error = store.auth.errorMessage {
+                Text(error)
+                    .font(.caption)
+                    .foregroundColor(.red)
+            }
 
-                HStack {
-                    TextField("First name...", text: $firstName)
-                        .padding()
-                        .background(Color.gray.opacity(0.4))
-                        .cornerRadius(10)
-                        .autocorrectionDisabled(true)
-                    
-                    TextField("Last Name...", text: $lastName)
-                        .padding()
-                        .background(Color.gray.opacity(0.4))
-                        .cornerRadius(10)
-                        .autocorrectionDisabled(true)
-                }
-
-                TextField("Email...", text: $email)
+            HStack {
+                TextField("First name...", text: $firstName)
                     .padding()
                     .background(Color.gray.opacity(0.4))
                     .cornerRadius(10)
                     .autocorrectionDisabled(true)
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.emailAddress)
-                
-                TextField("Phone number...", text: $phone)
-                    .padding()
-                    .background(Color.gray.opacity(0.4))
-                    .cornerRadius(10)
-                    .autocorrectionDisabled(true)
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.phonePad)
-                
-                SecureField("Password...", text: $password)
-                    .padding()
-                    .background(Color.gray.opacity(0.4))
-                    .cornerRadius(10)
-                    .autocorrectionDisabled(true)
-                    .textInputAutocapitalization(.never)
 
-                Button {
-                    viewStore.send(.auth(.signUpButtonTapped(
-                        email: email,
-                        password: password,
-                        firstName: firstName,
-                        lastName: lastName,
-                        phone: phone
-                    ))
-                    )
-                } label: {
-                    Text("Sign up")
+                TextField("Last Name...", text: $lastName)
+                    .padding()
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+                    .autocorrectionDisabled(true)
+            }
+
+            TextField("Email...", text: $email)
+                .padding()
+                .background(Color.gray.opacity(0.4))
+                .cornerRadius(10)
+                .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
+                .keyboardType(.emailAddress)
+
+            TextField("Phone number...", text: $phone)
+                .padding()
+                .background(Color.gray.opacity(0.4))
+                .cornerRadius(10)
+                .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
+                .keyboardType(.phonePad)
+
+            SecureField("Password...", text: $password)
+                .padding()
+                .background(Color.gray.opacity(0.4))
+                .cornerRadius(10)
+                .autocorrectionDisabled(true)
+                .textInputAutocapitalization(.never)
+
+            Button {
+                store.send(.auth(.signUpButtonTapped(
+                    email: email,
+                    password: password,
+                    firstName: firstName,
+                    lastName: lastName,
+                    phone: phone
+                )))
+            } label: {
+                Text("Sign up")
                     .font(.headline)
                     .foregroundColor(.black)
                     .frame(height: 55)
@@ -111,13 +109,12 @@ struct SignUpEmailView: View {
                             .stroke(Color.gray, lineWidth: 2)
                     )
                     .cornerRadius(10)
-                }
-
-                Spacer()
             }
-            .padding()
-            .navigationTitle("Sign Up")
+
+            Spacer()
         }
+        .padding()
+        .navigationTitle("Sign Up")
     }
 }
 
