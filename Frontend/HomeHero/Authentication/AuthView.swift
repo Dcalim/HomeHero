@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct AuthView: View {
-    
-    @Binding var showSignedInView: Bool
+    let store: StoreOf<AppFeature>
     var body: some View {
         VStack {
             Text("Welcome to HomeHero")
@@ -20,7 +20,7 @@ struct AuthView: View {
             Spacer()
             
             NavigationLink{
-                SignInEmailView(showSignedInView: $showSignedInView)
+                SignInEmailView(store: store)
             }label:{
                 HStack{
                     Image(systemName: "envelope")
@@ -82,6 +82,6 @@ struct AuthView: View {
 
 #Preview {
     NavigationView{
-        AuthView(showSignedInView: .constant(true))
+        AuthView(store: HomeHeroApp.store)
     }
 }

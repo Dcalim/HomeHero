@@ -7,6 +7,7 @@
 
 import SwiftUI
 internal import Combine
+import ComposableArchitecture
 
 @MainActor
 final class SignUpEmailViewModel: ObservableObject {
@@ -33,90 +34,96 @@ final class SignUpEmailViewModel: ObservableObject {
 }
 
 struct SignUpEmailView: View {
-    
-    @Binding var showSignedInView: Bool
-    @StateObject private var viewModel = SignUpEmailViewModel()
-    
+    let store: StoreOf<AppFeature>
+
+    @State private var email = ""
+    @State private var password = ""
+    @State private var firstName = ""
+    @State private var lastName = ""
+    @State private var phone = ""
+
     var body: some View {
-        VStack{
-                
-            
-            Spacer()
-            
-            HStack{
-                TextField("First name...", text: $viewModel.firstname)
-                    .padding()
-                    .background(Color.gray.opacity(0.4))
-                    .cornerRadius(10)
-                    .autocorrectionDisabled(true)
-                
-                
-                TextField("Last Name...", text: $viewModel.lastname)
-                    .padding()
-                    .background(Color.gray.opacity(0.4))
-                    .cornerRadius(10)
-                    .autocorrectionDisabled(true)
-                    
-                    
-            }
-            
-            
-            TextField("Email...", text: $viewModel.email)
-                .padding()
-                .background(Color.gray.opacity(0.4))
-                .cornerRadius(10)
-                .autocorrectionDisabled(true)
-                .textInputAutocapitalization(.never)
-                .keyboardType(.emailAddress)
-            
-            TextField("Phone number...", text: $viewModel.phone)
-                .padding()
-                .background(Color.gray.opacity(0.4))
-                .cornerRadius(10)
-                .autocorrectionDisabled(true)
-                .textInputAutocapitalization(.never)
-                .keyboardType(.phonePad)
-            
-            SecureField("Password...", text: $viewModel.password)
-                .padding()
-                .background(Color.gray.opacity(0.4))
-                .cornerRadius(10)
-                .autocorrectionDisabled(true)
-                .textInputAutocapitalization(.never)
-            
-            Button(action: {
-                Task{
-                    do{
-                        try await viewModel.signUp()
-                        print("Succcessfully signed up")
-                        showSignedInView = false
-                    } catch{
-                        print(error)
-                    }
+        WithViewStore(store, observe: \.auth) { viewStore in
+            VStack {
+                Spacer()
+
+                if let error = viewStore.errorMessage {
+                    Text(error)
+                        .font(.caption)
+                        .foregroundColor(.red)
                 }
-            }) {
-                Text("Sign up")
-                .font(.headline)
-                .foregroundColor(.black)
-                .frame(height: 55)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.gray, lineWidth: 2)
-                )
-                .cornerRadius(10)
+
+                HStack {
+                    TextField("First name...", text: $firstName)
+                        .padding()
+                        .background(Color.gray.opacity(0.4))
+                        .cornerRadius(10)
+                        .autocorrectionDisabled(true)
+                    
+                    TextField("Last Name...", text: $lastName)
+                        .padding()
+                        .background(Color.gray.opacity(0.4))
+                        .cornerRadius(10)
+                        .autocorrectionDisabled(true)
+                }
+
+                TextField("Email...", text: $email)
+                    .padding()
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+                    .autocorrectionDisabled(true)
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.emailAddress)
+                
+                TextField("Phone number...", text: $phone)
+                    .padding()
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+                    .autocorrectionDisabled(true)
+                    .textInputAutocapitalization(.never)
+                    .keyboardType(.phonePad)
+                
+                SecureField("Password...", text: $password)
+                    .padding()
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+                    .autocorrectionDisabled(true)
+                    .textInputAutocapitalization(.never)
+
+                Button {
+                    viewStore.send(.auth(.signUpButtonTapped(
+                        email: email,
+                        password: password,
+                        firstName: firstName,
+                        lastName: lastName,
+                        phone: phone
+                    ))
+                    )
+                } label: {
+                    Text("Sign up")
+                    .font(.headline)
+                    .foregroundColor(.black)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.gray, lineWidth: 2)
+                    )
+                    .cornerRadius(10)
+                }
+
+                Spacer()
             }
-            Spacer()
+            .padding()
+            .navigationTitle("Sign Up")
         }
-        .padding()
-        .navigationTitle("Sign up")
-       
     }
 }
 
+
 #Preview {
     NavigationView{
-        SignUpEmailView(showSignedInView: .constant(true))
+        SignUpEmailView(store: HomeHeroApp.store)
     }
 }

@@ -6,30 +6,30 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+
+import SwiftUI
+import ComposableArchitecture
 
 struct RootView: View {
-    
-    @State private var showSignedInView: Bool = false
-    
+    let store: StoreOf<AppFeature>
+
     var body: some View {
-        ZStack{
-            ContentView(showSignedInView: $showSignedInView)
-        }
-        .onAppear{
-            Task{
-                let authUser = try? await AuthenticationManager.shared.getAuthenticatedUser()
-                self.showSignedInView = authUser == nil
+        WithViewStore(store, observe: \.auth.isSignedIn) { viewStore in
+            ZStack {
+                ContentView(store: store)
             }
-        }
-        .fullScreenCover(isPresented: $showSignedInView){
-            NavigationStack{
-                AuthView(showSignedInView: $showSignedInView)
+            .fullScreenCover(
+                isPresented: .constant(!viewStore.state)
+            ) {
+                NavigationStack {
+                    AuthView(store: store)
+                }
             }
+//            .onAppear {
+//                store.send(.auth(.checkAuthentication))
+//            }
         }
-        
     }
 }
 
-#Preview {
-    RootView()
-}

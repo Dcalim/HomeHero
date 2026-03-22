@@ -6,13 +6,32 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct ExpensesView: View {
+    let store: StoreOf<AppFeature>
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            HStack{
+                VStack(alignment: .leading){
+                    Text("Welcome,")
+                        .font(Font.title2.bold())
+                    Text("\(store.config.data.profile.firstName)")
+                        .font(Font.largeTitle.bold())
+                    Text("Track and split your home expenses.")
+                }
+                Spacer()
+            }
+            .padding(10)
+            
+            
+            Spacer()
+        }
+        .padding(10)
     }
 }
 
 #Preview {
-    ExpensesView()
+    ExpensesView(store: HomeHeroApp.store)
 }

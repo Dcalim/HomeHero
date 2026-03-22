@@ -7,13 +7,19 @@
 
 import SwiftUI
 import SwiftData
+import ComposableArchitecture
 
 @main
 struct HomeHeroApp: App {
     
+    static let store = Store(initialState: AppFeature.State()) {
+      AppFeature()
+    }
+    @State private var authManager = AuthenticationManager.shared
+    
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootView(store: HomeHeroApp.store)
         }
     }
 }

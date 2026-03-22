@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120F7F3B2EF8F7D400C7EB09 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 120F7F3A2EF8F7D400C7EB09 /* Moya */; };
+		12360DA52EEF96350095AEF4 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 12360DA42EEF96350095AEF4 /* ComposableArchitecture */; };
 		A9373C522EB17D6D005CC224 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = A9373C512EB17D6D005CC224 /* Auth */; };
 		A9373C542EB17D6D005CC224 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = A9373C532EB17D6D005CC224 /* Functions */; };
 		A9373C562EB17D6D005CC224 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = A9373C552EB17D6D005CC224 /* PostgREST */; };
@@ -35,10 +37,12 @@
 			files = (
 				A9B0653B2EAD507E0051517E /* ComponentsKit in Frameworks */,
 				A9373C5A2EB17D6D005CC224 /* Storage in Frameworks */,
+				120F7F3B2EF8F7D400C7EB09 /* Moya in Frameworks */,
 				A9373C542EB17D6D005CC224 /* Functions in Frameworks */,
 				A9373C582EB17D6D005CC224 /* Realtime in Frameworks */,
 				A9373C562EB17D6D005CC224 /* PostgREST in Frameworks */,
 				A9373C522EB17D6D005CC224 /* Auth in Frameworks */,
+				12360DA52EEF96350095AEF4 /* ComposableArchitecture in Frameworks */,
 				A9373C5C2EB17D6D005CC224 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,10 +50,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		120F7F392EF8F7D400C7EB09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A9B27E2B2EAC371800194157 = {
 			isa = PBXGroup;
 			children = (
 				A9B27E362EAC371A00194157 /* HomeHero */,
+				120F7F392EF8F7D400C7EB09 /* Frameworks */,
 				A9B27E352EAC371A00194157 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +101,8 @@
 				A9373C572EB17D6D005CC224 /* Realtime */,
 				A9373C592EB17D6D005CC224 /* Storage */,
 				A9373C5B2EB17D6D005CC224 /* Supabase */,
+				12360DA42EEF96350095AEF4 /* ComposableArchitecture */,
+				120F7F3A2EF8F7D400C7EB09 /* Moya */,
 			);
 			productName = HomeHero;
 			productReference = A9B27E342EAC371A00194157 /* HomeHero.app */;
@@ -102,7 +116,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
-				LastUpgradeCheck = 2600;
+				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					A9B27E332EAC371A00194157 = {
 						CreatedOnToolsVersion = 26.0.1;
@@ -121,6 +135,8 @@
 			packageReferences = (
 				A9B065392EAD507E0051517E /* XCRemoteSwiftPackageReference "ComponentsKit" */,
 				A9373C502EB17D6D005CC224 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				12360DA32EEF96350095AEF4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				120F7F002EF8F4FB00C7EB09 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = A9B27E352EAC371A00194157 /* Products */;
@@ -212,6 +228,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -269,6 +286,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -362,6 +380,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		120F7F002EF8F4FB00C7EB09 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+		12360DA32EEF96350095AEF4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.23.1;
+			};
+		};
 		A9373C502EB17D6D005CC224 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase/supabase-swift";
@@ -381,6 +415,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		120F7F3A2EF8F7D400C7EB09 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 120F7F002EF8F4FB00C7EB09 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		12360DA42EEF96350095AEF4 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 12360DA32EEF96350095AEF4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		A9373C512EB17D6D005CC224 /* Auth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A9373C502EB17D6D005CC224 /* XCRemoteSwiftPackageReference "supabase-swift" */;
