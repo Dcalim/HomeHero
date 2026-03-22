@@ -32,8 +32,6 @@ public class ConfigController {
     )
     @RequestMapping(value = "/config", produces = "application/json", method = RequestMethod.GET)
     public AppConfig config(@Parameter(hidden = true) Authentication authentication) {
-
-
         String userId = (String) authentication.getPrincipal();
 
         Profile profile = profileService.getProfileById(
