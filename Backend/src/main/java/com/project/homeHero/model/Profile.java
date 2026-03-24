@@ -1,5 +1,7 @@
 package com.project.homeHero.model;
 
+import com.project.homeHero.model.constants.Ui_mode;
+
 import java.util.UUID;
 
 public class Profile {
@@ -9,17 +11,21 @@ public class Profile {
     private String last_name;
     private String phone_number;
     private String email;
+    private UUID home_code;
+    private Ui_mode ui_mode;
 
     public Profile() {
     }
 
-    public Profile(UUID id, String full_name, String first_name, String last_name, String phone_number, String email) {
+    public Profile(UUID id, String full_name, String first_name, String last_name, String phone_number, String email, UUID home_code, Ui_mode ui_mode) {
         this.id = id;
         this.full_name = full_name;
         this.first_name = first_name;
         this.last_name = last_name;
         this.phone_number = phone_number;
         this.email = email;
+        this.home_code = home_code;
+        this.ui_mode = ui_mode;
     }
 
     public UUID getId() {
@@ -68,5 +74,21 @@ public class Profile {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public UUID getHomeCode() {
+        return home_code;
+    }
+
+    public void setHomeCode(UUID home_code) {
+        this.home_code = home_code;
+    }
+
+    public Ui_mode getUiMode() {
+        return ui_mode;
+    }
+
+    public void setUiMode(Ui_mode ui_mode) {
+        this.ui_mode = ui_mode;
     }
 }

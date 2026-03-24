@@ -41,6 +41,7 @@ struct AppFeature {
             switch action {
 
             case .auth(.signInResponse(.success)):
+                print("Im here")
                 // Auth just succeeded → load config
                 return .send(.config(.loadConfig))
 

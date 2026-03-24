@@ -11,20 +11,25 @@ import ComposableArchitecture
 struct RootView: View {
     let store: StoreOf<AppFeature>
 
+    private var currentScheme: ColorScheme {
+        store.config.data.profile.uiMode == .dark ? .dark : .light
+    }
+
     var body: some View {
-            ZStack {
+        ZStack {
                 ContentView(store: store)
+        }
+        .fullScreenCover(
+            isPresented: .constant(
+                !store.auth.isSignedIn || store.auth.isLoading || store.config.isLoading
+            )
+        ) {
+            NavigationStack {
+                AuthView(store: store)
             }
-            .fullScreenCover(
-                isPresented: .constant(!store.auth.isSignedIn)
-            ) {
-                NavigationStack {
-                    AuthView(store: store)
-                }
-            }
-//            .onAppear {
-//                store.send(.auth(.checkAuthentication))
-//            }
+            .preferredColorScheme(currentScheme)
+        }
+        .preferredColorScheme(currentScheme)
+        
     }
 }
-

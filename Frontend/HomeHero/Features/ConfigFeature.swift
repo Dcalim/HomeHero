@@ -22,7 +22,9 @@ struct ConfigFeature {
                 fullName: "",
                 firstName: "",
                 lastName: "",
-                phoneNumber: ""
+                phoneNumber: "",
+                homeCode: "",
+                uiMode: EUiMode.light
             )
         )
         var isLoading = false
@@ -52,14 +54,16 @@ struct ConfigFeature {
                 }
 
             case .loadConfigResponse(.success(let response)):
-                state.isLoading = false
                 state.data = response
+                state.isLoading = false
                 print("\(state.data)")
                 return .none
 
             case .loadConfigResponse(.failure(let error)):
-                state.isLoading = false
+                print("Config Error Occurred")
+                print("\(error.localizedDescription)")
                 state.error = error.localizedDescription
+                state.isLoading = false
                 return .none
             }
         }
