@@ -18,6 +18,7 @@ struct AuthFeature {
         var isSignedIn: Bool = false
         var authToken: String = ""
         var errorMessage: String?
+        var isLoading: Bool = false
     }
 
     enum Action {
@@ -38,6 +39,7 @@ struct AuthFeature {
         Reduce { state, action in
             switch action {
             case .signInButtonTapped(let email, let password):
+                state.isLoading = true
                 state.errorMessage = nil
                 return .run { send in
                     do {
@@ -52,6 +54,7 @@ struct AuthFeature {
                 }
                 
             case let .signUpButtonTapped(email, password, firstName, lastName, phone):
+                state.isLoading = true
                 state.errorMessage = nil
                 return .run { send in
                     do {
@@ -72,11 +75,13 @@ struct AuthFeature {
                 state.isSignedIn = true
                 state.authToken = authManager.authToken
                 state.errorMessage = nil
+                state.isLoading = false;
                 return .none
 
             case .signInResponse(.failure(let error)):
                 state.isSignedIn = false
                 state.errorMessage = error.localizedDescription
+                state.isLoading = false
                 return .none
 
             case .signOut:
