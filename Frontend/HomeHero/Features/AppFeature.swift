@@ -12,21 +12,27 @@ struct AppFeature {
     
     @ObservableState
     struct State: Equatable {
-        var config = ConfigFeature.State()
+        var profileFeature = ProfileFeature.State()
+        var homesFeature = HomesFeature.State()
         var ui = UIFeature.State()
         var auth = AuthFeature.State()
     }
     
     enum Action {
-        case config(ConfigFeature.Action)
+        case profileFeature(ProfileFeature.Action)
+        case homesFeature(HomesFeature.Action)
         case ui(UIFeature.Action)
         case auth(AuthFeature.Action)
     }
     
     var body: some Reducer<State, Action>{
         // Allows us to use the reducer functions in the Config Feature (Child)
-        Scope(state: \.config, action: \.config) {
-            ConfigFeature()
+        Scope(state: \.profileFeature, action: \.profileFeature) {
+            ProfileFeature()
+        }
+        
+        Scope(state: \.homesFeature, action: \.homesFeature) {
+            HomesFeature()
         }
         
         Scope(state: \.ui, action: \.ui) {
@@ -41,14 +47,18 @@ struct AppFeature {
             switch action {
 
             case .auth(.signInResponse(.success)):
-                print("Im here")
+                print("Login Successful")
                 // Auth just succeeded → load config
-                return .send(.config(.loadConfig))
+                return .send(.profileFeature(.loadProfile))
 
             case .auth(.signOut):
                 // Optional: reset config on logout
-                state.config = ConfigFeature.State()
+                state.profileFeature = ProfileFeature.State()
                 return .none
+                
+            case .profileFeature(.loadProfileResponse(.success)):
+                print("Fetch Profiles Successful")
+                return .send(.homesFeature(.loadHomes))
 
             default:
                 return .none

@@ -12,7 +12,7 @@ struct RootView: View {
     let store: StoreOf<AppFeature>
 
     private var currentScheme: ColorScheme {
-        store.config.data.profile.uiMode == .dark ? .dark : .light
+        store.profileFeature.data.uiMode == .dark ? .dark : .light
     }
 
     var body: some View {
@@ -21,7 +21,7 @@ struct RootView: View {
         }
         .fullScreenCover(
             isPresented: .constant(
-                !store.auth.isSignedIn || store.auth.isLoading || store.config.isLoading
+                !store.auth.isSignedIn || store.auth.isLoading || store.profileFeature.isLoading
             )
         ) {
             NavigationStack {

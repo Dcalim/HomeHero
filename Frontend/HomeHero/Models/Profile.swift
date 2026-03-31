@@ -1,17 +1,9 @@
 //
-//  Config.swift
+//  Profile.swift
 //  HomeHero
 //
-//  Created by Dion Calim on 2025-12-10.
+//  Created by Dion Calim on 2026-03-30.
 //
-
-import Foundation
-
-// MARK: - Models (API response)
-
-struct ConfigResponse: Codable, Equatable {
-    let profile: Profile
-}
 
 enum EUiMode: String, Codable {
     case dark = "dark"
@@ -62,9 +54,8 @@ struct Profile: Codable, Equatable {
     }
 }
 
-extension ConfigResponse {
-    static let mock = ConfigResponse(
-        profile: Profile(
+extension Profile {
+    static let mock = Profile(
             id: "1",
             email: "preview@test.com",
             fullName: "Preview User",
@@ -74,5 +65,4 @@ extension ConfigResponse {
             homeCode: "12345678",
             uiMode: .dark
         )
-    )
 }

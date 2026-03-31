@@ -131,7 +131,7 @@ struct AuthView: View {
             }
             
             // 🔥 Spinner Overlay
-            if store.auth.isLoading || store.config.isLoading {
+            if store.auth.isLoading || store.profileFeature.isLoading {
                 Color.black.opacity(0.3)          // semi-transparent background
                     .ignoresSafeArea()
                 

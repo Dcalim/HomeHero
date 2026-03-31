@@ -6,66 +6,29 @@
 //
 
 import SwiftUI
-import ComponentsKit
 import ComposableArchitecture
 
 struct TasksView: View {
     let store: StoreOf<AppFeature>
-    
-    enum Tab {
-        case todo, shopping
-    }
-    
-    @State private var selectedTab: Tab = .todo
-    
-    
+
     var body: some View {
-        VStack{
-            HStack{
-                VStack(alignment: .leading){
-                    Text("Welcome,")
-                        .font(Font.title2.bold())
-                    Text("\(store.config.data.profile.firstName)")
-                        .font(Font.largeTitle.bold())
-                    Text("Stay on top of your home tasks.")
-                }
-                Spacer()
-            }
-            .padding(10)
-            
-            SUCard(model: cardModel){
-                VStack{
-                    HStack {
-                        VStack{
-                            Button("To-do List") {
-                                selectedTab = .todo
-                            }
-                            .foregroundColor(selectedTab == .todo ? .primary : .secondary)
-                            TabIndicator(isActive: selectedTab == .todo)
-                        }
-                        
-                        VStack{
-                            Button("Shopping List") {
-                                selectedTab = .shopping
-                            }
-                            .foregroundColor(selectedTab == .shopping ? .primary : .secondary)
-                            TabIndicator(isActive: selectedTab == .shopping)
-                        }
-                        
-                    }
-                    .buttonStyle(.plain)
-                    .animation(.easeInOut(duration: 0.25), value: selectedTab)
-                    
-                    ScrollView(.vertical, showsIndicators: false){
-                        
-                    }
-                }
-                
-            }
-            
+        HHHomePickerPage(store: store) {
+            Text("Welcome,")
+                .font(Theme.Fonts.title3)
+                .foregroundColor(Theme.textSecondary)
+
+            Text(store.profileFeature.data.firstName)
+                .font(Theme.Fonts.largeTitle)
+                .foregroundColor(Theme.textPrimary)
+
+            Text("Tasks")
+                .font(Theme.Fonts.caption)
+                .foregroundColor(Theme.textTertiary)
+                .textCase(.uppercase)
+                .tracking(1.2)
+
             Spacer()
         }
-        .padding(10)
     }
 }
 

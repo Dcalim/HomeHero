@@ -10,25 +10,25 @@ import ComposableArchitecture
 
 struct ExpensesView: View {
     let store: StoreOf<AppFeature>
-    
+
     var body: some View {
-        VStack{
-            HStack{
-                VStack(alignment: .leading){
-                    Text("Welcome,")
-                        .font(Font.title2.bold())
-                    Text("\(store.config.data.profile.firstName)")
-                        .font(Font.largeTitle.bold())
-                    Text("Track and split your home expenses.")
-                }
-                Spacer()
-            }
-            .padding(10)
-            
-            
+        HHHomePickerPage(store: store) {
+            Text("Welcome,")
+                .font(Theme.Fonts.title3)
+                .foregroundColor(Theme.textSecondary)
+
+            Text(store.profileFeature.data.firstName)
+                .font(Theme.Fonts.largeTitle)
+                .foregroundColor(Theme.textPrimary)
+
+            Text("Expenses")
+                .font(Theme.Fonts.caption)
+                .foregroundColor(Theme.textTertiary)
+                .textCase(.uppercase)
+                .tracking(1.2)
+
             Spacer()
         }
-        .padding(10)
     }
 }
 

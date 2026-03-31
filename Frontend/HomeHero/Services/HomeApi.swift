@@ -1,27 +1,27 @@
 //
-//  ConfigApi.swift
+//  HomeApi.swift
 //  HomeHero
 //
-//  Created by Dion Calim on 2025-12-21.
+//  Created by Dion Calim on 2026-03-30.
 //
 
 import Moya
 import Foundation
 internal import Alamofire
 
-enum ConfigAPI {
-    case fetchConfig
+enum HomeApi {
+    case fetchHomes
 }
 
-extension ConfigAPI: TargetType {
+extension HomeApi: TargetType {
     var baseURL: URL {
         URL(string: "http://localhost:8080/homeHero/api/v1")!
     }
 
     var path: String {
         switch self {
-        case .fetchConfig:
-            return "/config"
+        case .fetchHomes:
+            return "/loadHomes"
         }
     }
 
@@ -40,4 +40,3 @@ extension ConfigAPI: TargetType {
         ]
     }
 }
-

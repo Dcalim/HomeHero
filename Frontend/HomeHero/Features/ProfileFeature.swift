@@ -9,14 +9,13 @@ import ComposableArchitecture
 import Foundation
 
 @Reducer
-struct ConfigFeature {
+struct ProfileFeature {
     
-    @Dependency(\.configClient) var configClient
+    @Dependency(\.profileClient) var profileClient
     
     @ObservableState
     struct State: Equatable {
-        var data: ConfigResponse = ConfigResponse(
-            profile: Profile(
+        var data: Profile = Profile(
                 id: "",
                 email: "",
                 fullName: "",
@@ -24,42 +23,41 @@ struct ConfigFeature {
                 lastName: "",
                 phoneNumber: "",
                 homeCode: "",
-                uiMode: EUiMode.light
+                uiMode: EUiMode.dark
             )
-        )
         var isLoading = false
         var error: String?
     }
     
     enum Action {
-        case loadConfig
-        case loadConfigResponse(Result<ConfigResponse, Error>)
+        case loadProfile
+        case loadProfileResponse(Result<Profile, Error>)
     }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
 
-            case .loadConfig:
+            case .loadProfile:
                 state.isLoading = true
                 state.error = nil
 
                 return .run { send in
                     do {
-                        let response = try await configClient.fetchConfig()
-                        await send(.loadConfigResponse(.success(response)))
+                        let response = try await profileClient.fetchProfile()
+                        await send(.loadProfileResponse(.success(response)))
                     } catch {
-                        await send(.loadConfigResponse(.failure(error)))
+                        await send(.loadProfileResponse(.failure(error)))
                     }
                 }
 
-            case .loadConfigResponse(.success(let response)):
+            case .loadProfileResponse(.success(let response)):
                 state.data = response
                 state.isLoading = false
-                print("\(state.data)")
+                print("Profile: \(state.data)")
                 return .none
 
-            case .loadConfigResponse(.failure(let error)):
+            case .loadProfileResponse(.failure(let error)):
                 print("Config Error Occurred")
                 print("\(error.localizedDescription)")
                 state.error = error.localizedDescription
